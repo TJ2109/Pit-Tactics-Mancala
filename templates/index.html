@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pit Tactics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- WELCOME SCREEN -->
+  <section id="screen-welcome" class="screen active">
+    <div class="hero-panel">
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 400 170" class="board-illustration">
+          <rect x="4" y="4" width="392" height="162" rx="28" fill="var(--wood)"/>
+          <rect x="4" y="4" width="392" height="162" rx="28" fill="url(#grain)" opacity="0.25"/>
+          <rect x="24" y="24" width="56" height="122" rx="20" fill="var(--wood-dark)"/>
+          <rect x="320" y="24" width="56" height="122" rx="20" fill="var(--wood-dark)"/>
+          <circle cx="52" cy="60" r="9" fill="var(--bead)"/>
+          <circle cx="52" cy="85" r="9" fill="var(--bead-light)"/>
+          <circle cx="52" cy="110" r="9" fill="var(--bead)"/>
+          <circle cx="348" cy="60" r="9" fill="var(--bead-light)"/>
+          <circle cx="348" cy="85" r="9" fill="var(--bead)"/>
+          <circle cx="348" cy="110" r="9" fill="var(--bead-light)"/>
+          <g fill="var(--pit)">
+            <circle cx="118" cy="52" r="20"/>
+            <circle cx="164" cy="52" r="20"/>
+            <circle cx="210" cy="52" r="20"/>
+            <circle cx="256" cy="52" r="20"/>
+            <circle cx="302" cy="52" r="20"/>
+            <circle cx="118" cy="118" r="20"/>
+            <circle cx="164" cy="118" r="20"/>
+            <circle cx="210" cy="118" r="20"/>
+            <circle cx="256" cy="118" r="20"/>
+            <circle cx="302" cy="118" r="20"/>
+          </g>
+          <g fill="var(--bead)">
+            <circle cx="112" cy="46" r="4.5"/><circle cx="124" cy="50" r="4.5"/><circle cx="116" cy="58" r="4.5"/><circle cx="121" cy="43" r="4"/>
+            <circle cx="158" cy="47" r="4.5"/><circle cx="170" cy="52" r="4.5"/><circle cx="160" cy="58" r="4"/>
+            <circle cx="204" cy="48" r="4.5"/><circle cx="215" cy="50" r="4"/><circle cx="209" cy="57" r="4.5"/>
+            <circle cx="250" cy="47" r="4"/><circle cx="261" cy="53" r="4.5"/><circle cx="252" cy="58" r="4.5"/>
+            <circle cx="296" cy="48" r="4.5"/><circle cx="307" cy="52" r="4"/><circle cx="300" cy="57" r="4.5"/>
+            <circle cx="112" cy="112" r="4.5"/><circle cx="124" cy="116" r="4"/><circle cx="118" cy="124" r="4.5"/>
+            <circle cx="158" cy="113" r="4"/><circle cx="169" cy="118" r="4.5"/><circle cx="162" cy="124" r="4.5"/>
+            <circle cx="205" cy="112" r="4.5"/><circle cx="216" cy="117" r="4"/><circle cx="210" cy="124" r="4.5"/>
+            <circle cx="250" cy="113" r="4.5"/><circle cx="262" cy="117" r="4"/><circle cx="255" cy="124" r="4.5"/>
+            <circle cx="297" cy="112" r="4"/><circle cx="308" cy="117" r="4.5"/><circle cx="301" cy="124" r="4.5"/>
+          </g>
+          <defs>
+            <pattern id="grain" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(8)">
+              <rect width="14" height="14" fill="none"/>
+              <line x1="0" y1="0" x2="0" y2="14" stroke="var(--wood-dark)" stroke-width="1"/>
+            </pattern>
+          </defs>
+        </svg>
+      </div>
+      <h1>PIT TACTICS</h1>
+      <p class="tagline">A game of sowing, capture, and counting seeds. Play the old Mancala way, against an AI that never cheats.</p>
+      <button id="btn-welcome-start" class="btn btn-primary">Start</button>
+    </div>
+  </section>
+
+  <!-- HOW TO PLAY SCREEN -->
+  <section id="screen-howto" class="screen">
+    <div class="howto-panel">
+      <h2>How to Play</h2>
+      <div class="howto-body">
+        <div class="howto-diagram" aria-hidden="true">
+          <svg viewBox="0 0 360 200" class="rules-svg">
+            <rect x="4" y="4" width="352" height="192" rx="24" fill="var(--wood)"/>
+            <rect x="22" y="30" width="50" height="140" rx="16" fill="var(--wood-dark)"/>
+            <rect x="288" y="30" width="50" height="140" rx="16" fill="var(--wood-dark)"/>
+            <text x="47" y="98" fill="white" font-size="10" text-anchor="middle" font-family="var(--font-body)" font-weight="600">
+              <tspan x="47" dy="0">YOUR</tspan>
+              <tspan x="47" dy="12">STORE</tspan>
+            </text>
+            <g fill="var(--pit)">
+              <circle cx="112" cy="60" r="19"/><circle cx="158" cy="60" r="19"/><circle cx="204" cy="60" r="19"/><circle cx="250" cy="60" r="19"/>
+              <circle cx="112" cy="140" r="19"/><circle cx="158" cy="140" r="19"/><circle cx="204" cy="140" r="19"/><circle cx="250" cy="140" r="19"/>
+            </g>
+            <circle cx="112" cy="140" r="19" fill="var(--accent)" opacity="0.35"/>
+            <path d="M 112 121 L 158 121" stroke="var(--accent-dark)" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+            <path d="M 158 121 L 204 121" stroke="var(--accent-dark)" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+            <path d="M 204 121 L 250 121" stroke="var(--accent-dark)" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+            <path d="M 250 130 Q 270 100 250 79" stroke="var(--accent-dark)" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="var(--accent-dark)"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+        <ol class="howto-steps">
+          <li><strong>Pick a pit on your side.</strong> Click any pit that has seeds in it.</li>
+          <li><strong>Sow counter-clockwise.</strong> One seed is dropped in each pit going right, skipping the opponent's store.</li>
+          <li><strong>Land in your store then go again.</strong> If your last seed lands in your own store, you get an extra turn.</li>
+          <li><strong>Land in an empty pit of yours then capture.</strong> You take that seed plus everything in the opposite pit into your store.</li>
+          <li><strong>Empty your side to end the game.</strong> Once one side has no seeds left, all remaining seeds go to their owner's store. Most seeds in your store wins.</li>
+        </ol>
+      </div>
+      <div class="howto-actions">
+        <button id="btn-howto-back" class="btn btn-secondary">Back</button>
+        <button id="btn-howto-continue" class="btn btn-primary">I'm Ready</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAME MODE SCREEN -->
+  <section id="screen-mode" class="screen">
+    <div class="panel">
+      <h2>Who's Playing?</h2>
+      <div class="difficulty-options">
+        <button class="btn btn-difficulty" id="btn-mode-pva">
+          <span class="diff-name">Player vs AI</span>
+          <span class="diff-desc">Face off against the computer opponent</span>
+        </button>
+        <button class="btn btn-difficulty" id="btn-mode-pvp">
+          <span class="diff-name">Player vs Player</span>
+          <span class="diff-desc">Two people, one board, no AI</span>
+        </button>
+      </div>
+      <button id="btn-mode-back" class="btn btn-secondary">Back</button>
+    </div>
+  </section>
+
+  <!-- DIFFICULTY SCREEN -->
+  <section id="screen-difficulty" class="screen">
+    <div class="panel">
+      <h2>Choose Your Difficulty</h2>
+      <div class="difficulty-options">
+        <button class="btn btn-difficulty" data-difficulty="low">
+          <span class="diff-name">Low</span>
+          <span class="diff-desc">Relaxed AI</span>
+        </button>
+        <button class="btn btn-difficulty" data-difficulty="medium">
+          <span class="diff-name">Medium</span>
+          <span class="diff-desc">A fair and  thoughtful opponent</span>
+        </button>
+        <button class="btn btn-difficulty" data-difficulty="high">
+          <span class="diff-name">High</span>
+          <span class="diff-desc">Deep search plays to win</span>
+        </button>
+      </div>
+      <button id="btn-difficulty-back" class="btn btn-secondary">Back</button>
+    </div>
+  </section>
+
+  <!-- GAME SCREEN -->
+  <section id="screen-game" class="screen">
+    <div class="wrapper">
+      <div class="game-header">
+        <h1>Pit Tactics</h1>
+        <span id="difficulty-badge" class="badge">Medium</span>
+      </div>
+      <p id="message" class="message">Your turn. Pick a pit.</p>
+
+      <div class="board-frame">
+        <div class="board">
+          <div class="store ai-store" id="store-13">
+            <span class="store-label" id="store-13-label">AI</span>
+            <span class="store-total" id="pit-13">0</span>
+          </div>
+
+          <div class="pits-columns">
+            <div class="row ai-row">
+              <div class="pit ai-pit" data-pit="12"><span class="pit-number" id="pit-num-12">4</span><div class="seed-cluster" id="pit-12"></div></div>
+              <div class="pit ai-pit" data-pit="11"><span class="pit-number" id="pit-num-11">4</span><div class="seed-cluster" id="pit-11"></div></div>
+              <div class="pit ai-pit" data-pit="10"><span class="pit-number" id="pit-num-10">4</span><div class="seed-cluster" id="pit-10"></div></div>
+              <div class="pit ai-pit" data-pit="9"><span class="pit-number" id="pit-num-9">4</span><div class="seed-cluster" id="pit-9"></div></div>
+              <div class="pit ai-pit" data-pit="8"><span class="pit-number" id="pit-num-8">4</span><div class="seed-cluster" id="pit-8"></div></div>
+              <div class="pit ai-pit" data-pit="7"><span class="pit-number" id="pit-num-7">4</span><div class="seed-cluster" id="pit-7"></div></div>
+            </div>
+            <div class="row player-row">
+              <div class="pit player-pit" data-pit="0"><span class="pit-number" id="pit-num-0">4</span><div class="seed-cluster" id="pit-0"></div></div>
+              <div class="pit player-pit" data-pit="1"><span class="pit-number" id="pit-num-1">4</span><div class="seed-cluster" id="pit-1"></div></div>
+              <div class="pit player-pit" data-pit="2"><span class="pit-number" id="pit-num-2">4</span><div class="seed-cluster" id="pit-2"></div></div>
+              <div class="pit player-pit" data-pit="3"><span class="pit-number" id="pit-num-3">4</span><div class="seed-cluster" id="pit-3"></div></div>
+              <div class="pit player-pit" data-pit="4"><span class="pit-number" id="pit-num-4">4</span><div class="seed-cluster" id="pit-4"></div></div>
+              <div class="pit player-pit" data-pit="5"><span class="pit-number" id="pit-num-5">4</span><div class="seed-cluster" id="pit-5"></div></div>
+            </div>
+          </div>
+
+          <div class="store player-store" id="store-6">
+            <span class="store-label" id="store-6-label">You</span>
+            <span class="store-total" id="pit-6">0</span>
+          </div>
+        </div>
+      </div>
+
+      <button id="btn-quit" class="btn btn-secondary quit-btn">Quit to Menu</button>
+    </div>
+  </section>
+
+  <!-- END OVERLAY -->
+  <div id="overlay-end" class="overlay">
+    <div class="panel end-panel">
+      <h2 id="end-title">Game Over</h2>
+      <p id="end-message" class="end-message"></p>
+      <div class="end-actions">
+        <button id="btn-retry" class="btn btn-primary">Retry</button>
+        <button id="btn-end" class="btn btn-secondary">End Game</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
